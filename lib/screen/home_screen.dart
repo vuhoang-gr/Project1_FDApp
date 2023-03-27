@@ -1,4 +1,4 @@
-import 'package:face_detection/screen/face_detection_detail_screen.dart';
+import 'package:face_detection/screen/detect_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -21,11 +21,13 @@ class HomeScreen extends StatelessWidget {
           throw Exception('File is not available');
         }
         Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => FaceDetectionDetailScreen(
-                      file: file,
-                    )));
+          context,
+          MaterialPageRoute(
+            builder: (context) => DetectScreen(
+              path: file.path,
+            ),
+          ),
+        );
       } catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(e.toString()),
@@ -34,9 +36,9 @@ class HomeScreen extends StatelessWidget {
     }
 
     return Expanded(
-        child: Padding(
-      padding: EdgeInsets.symmetric(horizontal: 8.0),
-      child: GestureDetector(
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 8.0),
+        child: GestureDetector(
           onTap: () {
             onPickImageSelected(imgSource);
           },
@@ -48,8 +50,10 @@ class HomeScreen extends StatelessWidget {
               style: TextStyle(color: Colors.white, fontSize: 20),
               textAlign: TextAlign.center,
             ),
-          )),
-    ));
+          ),
+        ),
+      ),
+    );
   }
 
   @override

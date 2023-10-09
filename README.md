@@ -1,16 +1,34 @@
-# face_detection
+## Face Detection App
 
-A new Flutter project.
+A simple Flutter app to detect faces in images using Google ML Kit.
+## Installation
 
-## Getting Started
+To install the app, you will need to have the following installed:
 
-This project is a starting point for a Flutter application.
+    Flutter SDK
+    Google ML Kit plugins
 
-A few resources to get you started if this is your first Flutter project:
+Once you have the required dependencies installed, you can run the following command from the root directory of your app:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+```flutter pub get```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Usage
+
+To start the app, simply run the following command from the root directory of your app:
+
+```flutter run```
+
+Once the app is running, you can take a photo or select an image from your gallery. The app will then detect any faces in the image and display them on the screen.
+Troubleshooting
+
+If you are having problems installing or using the app, please try the following:
+
+    Make sure that you have the latest version of the Flutter SDK and Google ML Kit plugins installed.
+    Try restarting your device.
+    If you are still having problems, please visit the Flutter documentation for more help.
+
+Additional information
+
+    Develop by: Manh Ho Dinh - Vu Hoang
+    Email: 21522327@gm.uit.edu.vn - 2152043@gm.uit.edu.vn 
+    GitHub: https://github.com/ManhHoDinh - https://github.com/vuhoang

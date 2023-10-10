@@ -28,6 +28,6 @@ If you are still having problems, please visit the [Flutter documentation](https
 
 ## Additional information
 
-Develop by: [Manh Ho Dinh](https://github.com/ManhHoDinh) - [Vu Hoang](https://github.com/vuhoang)
+Develop by: [Manh Ho Dinh](https://github.com/ManhHoDinh) - [Vu Hoang](https://github.com/vuhoang-gr)
 
 Email: 21522327@gm.uit.edu.vn - 2152043@gm.uit.edu.vn 

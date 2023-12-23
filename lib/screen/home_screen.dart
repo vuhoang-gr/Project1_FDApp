@@ -58,31 +58,33 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text('Face Detection'),
-      ),
-      body: Center(
-        child: Column(
-          children: [
-            SizedBox(
-              height: 30,
-            ),
-            Text(
-              'Pick Image',
-              style: TextStyle(fontSize: 30),
-            ),
-            SizedBox(
-              height: 50,
-            ),
-            Row(
-              children: [
-                createButton(imgSource: 'Camera', context: context),
-                createButton(imgSource: 'Gallery', context: context)
-              ],
-            )
-          ],
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text('Face Detection'),
+        ),
+        body: Center(
+          child: Column(
+            children: [
+              SizedBox(
+                height: 30,
+              ),
+              Text(
+                'Pick Image',
+                style: TextStyle(fontSize: 30),
+              ),
+              SizedBox(
+                height: 50,
+              ),
+              Row(
+                children: [
+                  createButton(imgSource: 'Camera', context: context),
+                  createButton(imgSource: 'Gallery', context: context)
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );

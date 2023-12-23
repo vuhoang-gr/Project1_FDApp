@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'dart:typed_data';
+import 'package:face_detection/screen/details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mlkit_face_detection/google_mlkit_face_detection.dart';
 import 'dart:ui' as ui;
@@ -17,6 +18,8 @@ class _DetectScreenState extends State<DetectScreen> {
   List<Face>? faces;
   InputImage? inputImage;
   ui.Image? image;
+  bool onDetail = false;
+  bool contours = false;
 
   @override
   void initState() {
@@ -53,72 +56,85 @@ class _DetectScreenState extends State<DetectScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var isSmilling = faces != null
-        ? faces!
-            .where((element) =>
-                element.smilingProbability != null &&
-                element.smilingProbability! > 0.4)
-            .length
-        : 0;
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text('Face Detector'),
-      ),
-      body: (image == null || faces == null)
-          ? const Center(
-              child: Text(
-                "Processing...",
-                style: TextStyle(
-                  fontSize: 25,
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: const Text('Face Detector'),
+        ),
+        body: (image == null || faces == null)
+            ? const Center(
+                child: Text(
+                  "Processing...",
+                  style: TextStyle(
+                    fontSize: 25,
+                  ),
                 ),
-              ),
-            )
-          : SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Center(
-                      child: Container(
-                        margin: const EdgeInsets.only(top: 15),
-                        child: ConstrainedBox(
-                          constraints: BoxConstraints(
-                            maxHeight: MediaQuery.of(context).size.height / 1.5,
-                          ),
-                          child: FittedBox(
-                            child: SizedBox(
-                              width: image!.width.toDouble(),
-                              height: image!.height.toDouble(),
-                              child: CustomPaint(
-                                painter: FacePainter(image!, faces!),
+              )
+            : onDetail
+                ? FaceDetectorDetail(
+                    faces: faces!,
+                  )
+                : Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Center(
+                          child: Container(
+                            margin: const EdgeInsets.only(top: 15),
+                            child: ConstrainedBox(
+                              constraints: BoxConstraints(
+                                maxHeight:
+                                    MediaQuery.of(context).size.height / 1.5,
+                              ),
+                              child: FittedBox(
+                                child: SizedBox(
+                                  width: image!.width.toDouble(),
+                                  height: image!.height.toDouble(),
+                                  child: CustomPaint(
+                                    painter: FacePainter(image!, faces!,
+                                        contours: contours),
+                                  ),
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                    ),
-                    Center(
-                      child: Container(
-                        margin: const EdgeInsets.symmetric(vertical: 12),
-                        child: Text(
-                          "Detected: ${faces!.length} person${faces!.length > 1 ? 's' : ''}",
+                        Center(
+                          child: Container(
+                            margin: const EdgeInsets.symmetric(vertical: 12),
+                            child: Text(
+                              "Detected: ${faces!.length} person${faces!.length > 1 ? 's' : ''}",
+                            ),
+                          ),
                         ),
-                      ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            ElevatedButton(
+                              onPressed: () {
+                                setState(() {
+                                  onDetail = !onDetail;
+                                });
+                              },
+                              child: Text('DETAILS'),
+                            ),
+                            ElevatedButton(
+                              onPressed: () {
+                                setState(() {
+                                  contours = !contours;
+                                });
+                              },
+                              child: Text('CONTOURS'),
+                            ),
+                          ],
+                        )
+                      ],
                     ),
-                    (isSmilling > 0)
-                        ? Text("${isSmilling} is smilling")
-                        : const SizedBox.shrink(),
-                    (faces!.length - isSmilling > 0)
-                        ? Text(
-                            "${faces!.length - isSmilling} may not be smilling")
-                        : const SizedBox.shrink(),
-                  ],
-                ),
-              ),
-            ),
+                  ),
+      ),
     );
   }
 }

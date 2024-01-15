@@ -1,6 +1,6 @@
 ## Face Detection App
 
-A simple Flutter app to detect faces in images using Google ML Kit.
+<img src="./faceDetection.png"/>
 ## Installation
 
 To install the app, you will need to have the following installed:

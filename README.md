@@ -29,6 +29,8 @@ If you are still having problems, please visit the [Flutter documentation](https
 
 ## Additional information
 
+Google Store: [Face Detection](https://play.google.com/store/apps/details?id=com.face_detection)
+
 Develop by: [Manh Ho Dinh](https://github.com/ManhHoDinh) - [Vu Hoang](https://github.com/vuhoang-gr)
 
 Email: 21522327@gm.uit.edu.vn - 2152043@gm.uit.edu.vn 

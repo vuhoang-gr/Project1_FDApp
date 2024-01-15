@@ -1,6 +1,7 @@
 ## Face Detection App
 
 <img src="./faceDetection.png"/>
+
 ## Installation
 
 To install the app, you will need to have the following installed:
